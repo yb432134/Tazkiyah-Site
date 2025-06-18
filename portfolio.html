@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tazkiyah Co. Cleaning Solutions - Portfolio</title>
+  <style>
+    /* Global box-sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1e1e1e;
+      color: #fff;
+    }
+
+    nav {
+      background: #4C6E58;
+      padding: 15px;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    #portfolio {
+      background: linear-gradient(270deg, #EBEDDE 0%, #C7D3C6 50%, #EBEDDE 100%);
+      background-size: 600% 600%;
+      animation: gradientShift 20s ease infinite;
+      padding: 80px 20px;
+      width: 100%;
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #portfolio h2 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    #portfolio p {
+      font-size: 1.2em;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    /* Free Quote Button Styles */
+    .free-quote-button {
+      display: inline-block;
+      padding: 18px 30px;
+      background: linear-gradient(to right, #4C6E58, #738C77);
+      color: #fff !important;
+      font-weight: bold;
+      font-size: 1.2em;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      animation: pulseGlow 3s ease-in-out infinite, fadeSlideUp 1s ease forwards;
+      transition: transform 0.2s ease, background 0.3s ease;
+      user-select: none;
+      margin-bottom: 50px;
+    }
+
+    .free-quote-button:hover {
+      background: linear-gradient(to right, #3b5948, #5f7262);
+      transform: translateY(-3px);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 0 5px;
+      margin-bottom: 60px;
+    }
+
+    .portfolio-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 18px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(4px);
+      color: #000;
+      cursor: pointer;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      object-fit: cover;
+      max-height: 250px;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-item h3,
+    .portfolio-item p {
+      color: #000;
+    }
+
+    .portfolio-item h3 {
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    .portfolio-item p {
+      font-size: 1em;
+    }
+
+    @media (max-width: 480px) {
+      #portfolio {
+        padding: 50px 15px;
+      }
+      #portfolio h2 {
+        font-size: 1.8em;
+      }
+      .portfolio-item h3 {
+        font-size: 1.1em;
+      }
+      .portfolio-item p {
+        font-size: 0.9em;
+      }
+      .free-quote-button {
+        font-size: 1em;
+        padding: 15px 25px;
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(115, 140, 119, 0.3), 0 0 20px rgba(115, 140, 119, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 15px rgba(115, 140, 119, 0.5), 0 0 30px rgba(115, 140, 119, 0.3);
+      }
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+
+    .lightbox .close {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+  </nav>
+
+  <section id="portfolio">
+    <h2>Our Portfolio</h2>
+    <p>A look at our recent work and satisfied clients.</p>
+
+    <!-- Free Quote Button added here -->
+    <a href="https://www.tazkiyahclean.site/free-quote" 
+       class="free-quote-button" target="_blank" rel="noopener noreferrer">
+      Press for Free Quote
+    </a>
+
+    <div class="portfolio-grid">
+      <!-- Balcony Clean -->
+      <div class="portfolio-item">
+        <img src="https://i.ibb.co/nMP0qQR4/Untitled-design-17.png"  alt="Balcony Cleaning" />
+        <h3>Balcony Deep Clean</h3>
+        <p>Thorough brush & water cleaning removed built-up moss and restored a fresh look to the balcony.</p>
+      </div>
+
+      <!-- Garden Build-Up -->
+      <div class="portfolio-item">
+        <img src="https://i.ibb.co/Xr4gpPVk/Untitled-design-16.png" alt="Garden Build-Up" />
+        <h3>Garden: Years of Build-Up</h3>
+        <p>Pressure washing services for personal home tackling years of moss and dirt build up!</p>
+      </div>
+
+      <!-- Shop Window Cleaning -->
+      <div class="portfolio-item">
+        <img src="https://i.ibb.co/wZX2ycbg/5875314914044790808.jpg" alt="Window Cleaning for Shops" />
+        <h3>Shop Window Cleaning</h3>
+        <p>Restoring shine and clarity to commercial storefronts. Sparkling clean windows that welcome customers in.</p>
+      </div>
+
+      <!-- Commercial Dry Cleaning Inside & Out -->
+      <div class="portfolio-item">
+        <img src="https://i.ibb.co/pB4DRR7t/5875314914044790807.jpg" alt="Window cleaning inside and out" />
+        <h3>Window Cleaning Inside & Out</h3>
+        <p>Window cleaning inside and out for commercial dry cleaning.</p>
+      </div>
+
+      <!-- Customer Home Window & Frame Cleaning -->
+      <div class="portfolio-item">
+        <img src="https://i.ibb.co/kgLsMj9z/5875314914044790810.jpg" alt="Customer's home window and frame cleaning" />
+        <h3>Home Window & Frame Cleaning</h3>
+        <p>Customer's home window & frame cleaning leaving customer satisfied and happy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox container -->
+  <div id="lightbox" class="lightbox" style="display:none;">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" src="" alt="Zoomed Image" />
+  </div>
+
+  <script>
+    document.querySelectorAll('.portfolio-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // prevent background scroll
+      });
+    });
+
+    document.querySelector('.lightbox .close').addEventListener('click', () => {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close lightbox if clicking outside the image
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === e.currentTarget) {
+        e.currentTarget.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>
